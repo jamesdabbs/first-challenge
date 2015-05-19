@@ -16,20 +16,33 @@
 
 require 'pry'
 
-text = File.read "fox.txt"
-# text = "The quick brown fox jumps ..."
+def count_letters_in_file file_name
+  text = File.read(file_name).downcase.gsub(' ', '')
 
-letter_occurrences = Hash.new
-text.chars.each do |letter|
-  if letter_occurrences[letter]
-    letter_occurrences[letter] = letter_occurrences[letter] + 1
-  else
-    letter_occurrences[letter] = 1
+  # text = "The quick brown fox jumps ..."
+  letter_occurrences = Hash.new
+  text.chars.each do |letter|
+    if letter_occurrences[letter]
+      letter_occurrences[letter] += 1
+    else
+      letter_occurrences[letter] = 1
+    end
   end
+  #puts "I'm inside the function"
+  #return letter_occurrences
+  letter_occurrences
 end
+
+#puts "I'm outside the function"
+
+letter_occurrences = count_letters_in_file "fox.txt"
 
 ac = letter_occurrences["a"]
 zc = letter_occurrences["z"]
 
 #puts "Text is: #{text}"
 puts "There are #{ac} A's and #{zc} Z's"
+
+prufrock_letters = count_letters_in_file "prufrock.txt"
+qs = prufrock_letters["q"]
+puts "There are #{qs} Q's in prufrock"
