@@ -17,18 +17,19 @@
 require 'pry'
 
 text = File.read "fox.txt"
+# text = "The quick brown fox jumps ..."
 
-cs = Hash.new
-text.chars.each do |l|
-  if cs[l]
-    cs[l] = cs[l] + 1
+letter_occurrences = Hash.new
+text.chars.each do |letter|
+  if letter_occurrences[letter]
+    letter_occurrences[letter] = letter_occurrences[letter] + 1
   else
-    cs[l] = 1
+    letter_occurrences[letter] = 1
   end
 end
 
-ac = cs[:a]
-zc = cs[:z]
+ac = letter_occurrences["a"]
+zc = letter_occurrences["z"]
 
 #puts "Text is: #{text}"
 puts "There are #{ac} A's and #{zc} Z's"
